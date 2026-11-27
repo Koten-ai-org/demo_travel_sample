@@ -98,7 +98,7 @@ def create_app() -> Flask:
         return jsonify(
             {
                 "status": "ok" if client_ok else "degraded",
-                "app_version": getattr(travel_planner, "__version__", "0.1.0"),
+                "app_version": getattr(travel_planner, "__version__", "0.1.1"),
                 "build_version": build_version,
                 "zeus_client_version": client_version,
                 "client_import": "zeus_client",

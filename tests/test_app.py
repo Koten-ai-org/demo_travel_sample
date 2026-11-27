@@ -141,7 +141,7 @@ def test_health_zeus_client_version(flask_client):
     assert response.status_code == 200
     body = response.get_json()
     assert body["status"] == "ok"
-    assert body["app_version"]
+    assert body["app_version"] == "0.1.1"
     assert body["zeus_client_version"] == zeus_client.__version__
     assert str(body["zeus_client_version"]).startswith(REQUIRED_CLIENT_VERSION_PREFIX)
     assert body["client_import"] == "zeus_client"
