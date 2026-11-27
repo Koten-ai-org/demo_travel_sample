@@ -74,10 +74,11 @@
 - **Commits**:
   - `4a673a9` — ZD-33 vendor the analytics pin as base-9.1
   - `c34b9a1` — Merge pull request #10
+  - `3a974d0` — Bump TravelPlan to 0.1.1
 - **Pull requests**:
   - [#10](https://github.com/Koten-ai-org/demo_travel_sample/pull/10) — ZD-33: vendor the analytics pin as base-9.1
 
 ## 7. Changelog
 | Date | Author | Change |
 |------|--------|--------|
-| 2026-11-27 | Grok | Initial guide for the 0.1.1 version bump and release |
+| 2026-11-27 | Grok | Initial guide for the 0.1.1 version bump (`3a974d0`) and release |
