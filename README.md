@@ -92,7 +92,7 @@ The server listens on port `5000` by default. Set `ENVIRONMENT=dev` to enable Fl
 | `llm.base_url` / `llm.model` | `https://api.x.ai/v1` and `grok-4-1-fast-non-reasoning`, unless `LLM_BASE_URL` / `LLM_MODEL` are set |
 | `settings.mode` | `analytics`, unless `ZEUS_MODE` is set |
 | `target` | `travel-sample` / `_default` / `_default` |
-| `client_floor` | Must be `client-floor-6.1` for Zeus 0.7.x (`base-6.1`). Floor-5 fails closed and the agent runs with no Zeus verbs. |
+| `client_floor` | Must be `client-floor-6.1`. Floor-5 fails closed and the agent runs with no Zeus verbs. |
 | `settings.durable_sessions` | Durable Zeus sessions (default **true**) |
 | `settings.ai_process_result` | Extra insight hop after tools (default **false**) |
 | `session.semantic_cache.enabled` | Semantic agent memory (default **false**; Zeus ≥ 0.7.6 to turn on) |
@@ -193,7 +193,7 @@ demo_travel_sample/
 │   ├── templates/            # Jinja2 HTML (index.html)
 │   └── static/               # CSS, JS (trace widget is CDN latest, not vendored)
 ├── data/
-│   └── chat_requests/        # vendored analytics base-6.1 pin + _default load path
+│   └── chat_requests/        # vendored pin chat_request_analytics_base-9.1.json; load path travel-sample__default/chat_request_analytics_v2.json
 ├── tests/                    # Pytest suite
 ├── .env.example              # Copy to .env; set LLM_API_KEY and ZEUS_PASSWORD
 ├── config.json               # Secret-free runtime document
@@ -243,7 +243,7 @@ travel-planner
 |---------|--------------|-----|
 | `no Zeus URL configured` | `ZEUS_URL` unset and `zeus.url` empty | Set `ZEUS_URL` in `.env` (copy `.env.example`) |
 | LLM calls fail / missing API key | `LLM_API_KEY` unset | Set `LLM_API_KEY` in `.env`. Do not put the key in `config.json` |
-| Agent answers without Zeus tools | Catalog floor too low or missing pin | Set `client_floor` to `client-floor-6.1`. Vendored pin: `data/chat_requests/chat_request_analytics_base-6.1.json` (load path `travel-sample__default/chat_request_analytics_v2.json`) |
+| Agent answers without Zeus tools | Catalog floor too low or missing pin | Set `client_floor` to `client-floor-6.1`. Vendored pin: `data/chat_requests/chat_request_analytics_base-9.1.json` (load path `travel-sample__default/chat_request_analytics_v2.json`) |
 | Empty destination cards | LLM returned prose only | Check `structured_answer` in the API response |
 | Docker can't reach Zeus | Wrong network URL | Set `zeus.url` / `ZEUS_URL` to a host-accessible address (e.g. `http://host.docker.internal:8080`) |
 | `kotenai-zeus-client 2.5.x required` | Sibling checkout older than 2.5 (this demo uses **2.5.4**) | Update `../zeus_client_python` and `pip install -e ".[dev]"` |

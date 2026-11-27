@@ -288,8 +288,8 @@ def build_runtime_config(
     elif isinstance(zcfg.get("scope_contracts"), dict):
         scope_contracts = dict(zcfg["scope_contracts"])
 
-    # Zeus 0.7.x is pinned to chat_request base-6.1; floor-5 fails closed and
-    # AgentAPI.run_turn then silently runs with no catalog / no Zeus verbs.
+    # Floor-5 fails closed and AgentAPI.run_turn then silently runs with no
+    # catalog / no Zeus verbs.
     client_floor = str(
         os.environ.get("ZEUS_CLIENT_FLOOR")
         or cfg.get("client_floor")

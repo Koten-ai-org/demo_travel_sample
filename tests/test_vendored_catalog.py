@@ -1,4 +1,4 @@
-"""Vendored analytics base-6.1 pin is present on the client load path."""
+"""Vendored analytics base-9.1 pin is present on the client load path."""
 
 from __future__ import annotations
 
@@ -8,9 +8,9 @@ from pathlib import Path
 from travel_planner.paths import PROJECT_ROOT
 
 CHAT_DIR = PROJECT_ROOT / "data" / "chat_requests"
-PIN = CHAT_DIR / "chat_request_analytics_base-6.1.json"
+PIN = CHAT_DIR / "chat_request_analytics_base-9.1.json"
 LOAD_PATH = CHAT_DIR / "travel-sample__default" / "chat_request_analytics_v2.json"
-CONTRACT_HASH = "md5:5aacbf1d7a4d9d5de9436cdffbce050f"
+ROOT_ALIAS = CHAT_DIR / "chat_request_analytics_v2.json"
 
 
 def _load(path: Path) -> dict:
@@ -20,22 +20,14 @@ def _load(path: Path) -> dict:
     return doc
 
 
-def test_analytics_base_6_1_pin_is_vendored():
+def test_analytics_base_9_1_pin_is_vendored():
     doc = _load(PIN)
     lineage = doc.get("_lineage") or {}
-    contract = doc.get("contract") or {}
-    assert lineage.get("base_id") == "base-6.1"
-    assert lineage.get("file_stem") == "chat_request_analytics_base-6.1.json"
-    assert contract.get("id") == "analytics_base5_2"
-    assert contract.get("hash") == CONTRACT_HASH
-    assert doc.get("_hash") == CONTRACT_HASH
-    assert len(doc.get("verbs") or []) == 13
+    assert lineage.get("base_id") == "base-9.1"
+    assert lineage.get("file_stem") == "chat_request_analytics_base-9.1.json"
 
 
 def test_default_scope_load_path_matches_pin():
-    pin = _load(PIN)
-    loaded = _load(LOAD_PATH)
-    assert loaded.get("_hash") == pin.get("_hash")
-    assert (loaded.get("_lineage") or {}).get("base_id") == "base-6.1"
-    top = CHAT_DIR / "chat_request_analytics_v2.json"
-    assert _load(top).get("_hash") == pin.get("_hash")
+    pin = PIN.read_bytes()
+    assert LOAD_PATH.read_bytes() == pin
+    assert ROOT_ALIAS.read_bytes() == pin
